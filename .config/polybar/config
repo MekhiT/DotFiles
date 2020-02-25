@@ -21,7 +21,7 @@
 background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = #FECCFD
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
@@ -30,45 +30,42 @@ alert = #bd2c40
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 30 
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
-fixed-center = true
+fixed-center = true 
 
-background = #2B2D30
-;${colors.background}
-foreground = #CC0000
-;${colors.foreground}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 line-size = 0
 line-color = #f00
 
-;border-size =
-border-top-size = 0
-border-bottom-size = 0
-border-right-size = 0
-border-left-size = 0
+border-size = 0
 border-color = #00000000
 
-padding-left = 5
-padding-right = 5
+padding-left = 0
+padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
-font-0 = "Verdana:style=Regular:size=13"
-font-1 = "SFNS Display:style=Regular:size=13"
-font-2 = "SFNS Display:style=Regular:pixelsize=13"
+;font-0 = "System San Francisco Display 18:style=Regular:size=12;0"
+font-0 = "Font Awesome 5 Free:style=Regular:size=12;0"
+font-1 = fontawesome-webfont:pixelsize=16;1
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
 
+;modules-left =bspwm i3
+modules-left = i3 date 
+;modules-center = mpd
+modules-center = spotify
+;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-right = eth wlan battery pulseaudio
 
-modules-left = mpd
-modules-center = i3
-modules-right = alsa memory cpu wlan eth battery temperature date
-;pulseaudio filesystem xbacklight xkeyboard powermenu
 tray-position = right
 tray-padding = 2
-;tray-transparent = true
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
@@ -143,35 +140,69 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-;attempt at adding icons through polybar
+;ws-icon-[0-9]+ = label;icon
+;NOTE: the label need to match the name of the i3 workspace
 
-ws-icon-0 = 1;
-ws-icon-default = 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+;ws-icon-0 = 5;
+;ws-icon-0 = 6;
+;ws-icon-0 = 7;
+;ws-icon-0 = 8;
+;ws-icon-0 = 9;
+
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
+label-mode = %mode%
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = #FECCFD
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %name%
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %name%
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %name%
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %name%
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -189,7 +220,7 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 100
+label-song-maxlen = 25
 label-song-ellipsis = true
 
 [module/xbacklight]
@@ -232,14 +263,15 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = wlp63s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected =  <ramp-signal> <label-connected>
+format-connected-underline = 
+;#9f78e1
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected = 
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -254,7 +286,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp2s0
+interface = net0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -272,27 +304,31 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
+date ="%A  %d %B"
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
+time = "%I:%M %p"
 time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
+format = <label> 
+;format-background = #FECCFD
+;format-foreground = #282C34
 
-label = %date% %time%
+label = %date%     %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+format-volume = <label-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${colors.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+label-muted = 
+;muted
+label-muted-foreground = ${colors.foreground}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -341,35 +377,38 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
+battery = BAT1
+adapter = ACAD
+full-at = 95
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+;format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix = " "
+format-full-prefix-foreground = #FECCFD
+;${colors.foreground-alt}
+;format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground}
+
+;${colors.foreground-alt}
 animation-discharging-framerate = 750
 
 [module/temperature]
@@ -420,12 +459,19 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "  "
+format = <label>
+exec = python ~/Programming/Python/spotify_status.py
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
+;pseudo-transparency = false
 
 [global/wm]
 margin-top = 5

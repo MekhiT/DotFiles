@@ -1,9 +1,11 @@
 URxvt.scrollBar: false
-URxvt.font: xft:monaco:size=10
-URxvt.letterSpace: -3
+URxvt.font: xft:monaco:size=13
+URxvt.letterSpace: -2
+!URxvt.transparent: true
+!URxvt.shading:25
 
-*.foreground:   #E4900A
-*.background:   #161219
+*.foreground:   #FECCFD
+*.background:   #282C34
 *.cursorColor:  #c7c7c7
 
 ! black
@@ -36,4 +38,4 @@ URxvt.letterSpace: -3
 
 ! white
 *.color7:       #e95986
-*.color15:      #fb89ad
+*.color15: #fb89ad
