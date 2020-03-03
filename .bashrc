@@ -9,7 +9,7 @@
 #add auto cd when entering a file path
 shopt -s autocd
 #aliases
-alias ls='ls --color=auto'
+alias ls='br'
 alias p='sudo pacman'
 alias ci3='vim ~/.config/i3/config'
 alias cpoly='vim ~/.config/polybar/config'
@@ -25,3 +25,5 @@ PS1='[\u@\h \W]\$ '
 
 #keep at end of file
 pfetch
+
+source /home/mekhi/.config/broot/launcher/bash/br

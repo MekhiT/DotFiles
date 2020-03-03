@@ -1,6 +1,7 @@
 URxvt.scrollBar: false
-URxvt.font: xft:monaco:size=13
-URxvt.letterSpace: -2
+!URxvt.font: xft:monaco:size=13
+URxvt.font: xft:FantasqueSansMono:size=17
+URxvt.letterSpace: 4
 !URxvt.transparent: true
 !URxvt.shading:25
 

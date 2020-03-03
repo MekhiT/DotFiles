@@ -120,6 +120,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+#adding i3lock script -- I think this shit broke my wallpaper
+#set $i3lockwall sh ~/.config/i3/scripts/lock.sh
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -191,7 +193,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 #my keybindings
 bindsym $mod+b exec firefox
-bindsym $mod+p exec i3lock -u
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 bindsym $mod+o exec wicd
 bindsym $mod+m exec spotify
 #bindsym $mod+h exec deepin-screenshot
@@ -214,9 +216,9 @@ client.urgent                 $urgent-bg-color    $urgent-bg-color   $text-color
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
+#bar {
        #status_command i3status
-}
+#}
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
@@ -232,7 +234,7 @@ bar {
 #i3 gaps
 smart_gaps on
 gaps inner 8
-gaps outer 4
+gaps outer 2
 for_window [class="^.*"] border pixel 1
 
 #exec on startup
@@ -255,3 +257,4 @@ exec_always  sudo connectPitt
 
 #layout mode for new contatiners
 workspace_layout tabbed
+
