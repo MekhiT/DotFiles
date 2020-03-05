@@ -193,7 +193,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 #my keybindings
 bindsym $mod+b exec firefox
-bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id i3lock
 bindsym $mod+o exec wicd
 bindsym $mod+m exec spotify
 #bindsym $mod+h exec deepin-screenshot
