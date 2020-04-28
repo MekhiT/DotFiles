@@ -3,13 +3,13 @@
 #
 
 #adding scripts folder to path variable
-#export PATH="$PATH:$HOME/Scripts"
+export PATH="$PATH:$HOME/Scripts"
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 #add auto cd when entering a file path
 shopt -s autocd
 #aliases
-alias ls='br'
+#alias ls='br'
 alias p='sudo pacman'
 alias ci3='vim ~/.config/i3/config'
 alias cpoly='vim ~/.config/polybar/config'

@@ -1,6 +1,6 @@
 " Colors {{{
 packadd! dracula         "add dracula colorscheme to runtime path so that the theme will run properly
-colorscheme dark_purple "set colorscheme to [dracula]
+colorscheme dracula "set colorscheme to [dracula]
 syntax enable            "[enable] syntax processing
 set title
 "}}}
